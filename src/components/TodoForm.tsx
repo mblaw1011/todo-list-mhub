@@ -2,7 +2,7 @@ import { TextField, Button, Typography } from "@mui/material";
 import { useState } from "react";
 
 interface TodoFormProps {
-  onSubmit: (title: string) => void;
+  onSubmit: (todo: { title: string; completed: boolean; id: string }) => void;
 }
 
 export const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {

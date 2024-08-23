@@ -1,15 +1,15 @@
 
 const localStorageHelper = {
-  setItem: (key, value) => {
+  setItem: (key:string, value:any ) => {
     localStorage.setItem(key, JSON.stringify(value));
   },
 
-  getItem: (key) => {
+  getItem: (key: string) => {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : null;
   },
 
-  removeItem: (key) => {
+  removeItem: (key: string) => {
     localStorage.removeItem(key);
   },
 

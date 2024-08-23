@@ -1,7 +1,5 @@
 import {
   Typography,
-  Checkbox,
-  Button,
   Table,
   TableBody,
   TableCell,
@@ -11,8 +9,14 @@ import {
 } from "@mui/material";
 import { TodoItem } from "./TodoItem";
 
+interface Todo {
+  title: string;
+  completed: boolean;
+  id: string;
+}
+
 interface TodoListProps {
-  todos: [{ title: string; id: string; completed: boolean }];
+  todos: Todo[];
   toggleCompleted: (id: string, completed: boolean) => void;
   deleteTodo: (id: string) => void;
 }
