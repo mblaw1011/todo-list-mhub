@@ -12,16 +12,23 @@ interface Todo {
   id: string;
 }
 
-export const Todo = () => {
+export const TodoApp = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   useEffect(() => {
-    setTodos(JSON.parse(localStorage.getItem(TODOS_KEY)) || []);
+    const storedTodos = localStorage.getItem(TODOS_KEY);
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
   }, []);
 
   const handleAddTodo = (newTodo: Todo) => {
-    const data = [...todos, { ...newTodo, completed: false, id: uuidv4() }];
+    const data: Todo[] = [
+      ...todos,
+      { ...newTodo, completed: false, id: uuidv4() },
+    ];
     setTodos(data);
+
     localStorageHelper.setItem(TODOS_KEY, data);
   };
 
@@ -61,7 +68,16 @@ export const Todo = () => {
   );
 
   return (
-    <Box sx={{ minWidth: 275 }}>
+    <Box
+      sx={{
+        minWidth: 100,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        margin: "0 auto",
+      }}
+    >
       <Card variant="outlined">{card}</Card>
     </Box>
   );
